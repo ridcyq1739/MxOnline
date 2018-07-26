@@ -51,7 +51,7 @@ class OrgView(View):
             page = 1
 
 
-        p = Paginator(all_orgs,5 ,request=request)
+        p = Paginator(all_orgs,10 ,request=request)
 
         orgs = p.page(page)
         return render(request,"org-list.html",{
@@ -254,7 +254,7 @@ class TeacherListView(View):
         except PageNotAnInteger:
             page = 1
 
-        p = Paginator(all_teachers, 1, request=request)
+        p = Paginator(all_teachers, 10, request=request)
 
         teachers = p.page(page)
 
