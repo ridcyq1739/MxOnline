@@ -46,11 +46,11 @@
                 <div class="right">
                     <div class="top">
                         <div class="fl">
-                            <a href=""><h1>django</h1></a>
-                            <span>发表于：2015-10-12</span>
+                            <a href="{% url 'org:teacher_detail' teacher.id %}"><h1>{{ teacher.name }}</h1></a>
+                            <span>教学特点</span>
                         </div>
                     </div>
-                    <div class="middle" style="border-bottom:0;">课程介绍</div>
+                    <div class="middle" style="border-bottom:0;">幽默</div>
                 </div>
             </div>
         </div>

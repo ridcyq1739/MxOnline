@@ -274,12 +274,14 @@ class TeacherDetailView(View):
         all_courses = Course.objects.filter(teacher= teacher)
 
         has_teacher_faved = False
-        if UserFavorite.objects.filter(user= request.user,fav_type= 3,fav_id=teacher.id):
-            has_teacher_faved = True
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user= request.user,fav_type= 3,fav_id=teacher.id):
+                has_teacher_faved = True
 
         has_org_faved = False
-        if UserFavorite.objects.filter(user=request.user, fav_type=2, fav_id=teacher.org.id):
-            has_org_faved = True
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_type=2, fav_id=teacher.org.id):
+                has_org_faved = True
 
         #讲师排行
         sorted_teacher = Teacher.objects.all().order_by("-click_nums")[:3]
