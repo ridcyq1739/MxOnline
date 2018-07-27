@@ -103,7 +103,7 @@ class OrgHomeView(View):
         all_teachers = course_org.teacher_set.all()[:1]
 
         has_fav = False
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if UserFavorite.objects.filter(user=request.user, fav_type=2, fav_id=int(course_org.id)):
                 has_fav = True
 
@@ -118,7 +118,7 @@ class OrgCourseView(View):
         all_courses = course_org.course_set.all()
         has_fav = False
         # 必须是用户已登录我们才需要判断。
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
                 has_fav = True
 
@@ -135,7 +135,7 @@ class OrgDescView(View):
         course_org = CourseOrg.objects.get(id=int(org_id))
         has_fav = False
         # 必须是用户已登录我们才需要判断。
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
                 has_fav = True
 
@@ -153,7 +153,7 @@ class OrgTeacherView(View):
         all_teachers = course_org.teacher_set.all()
         has_fav = False
         # 必须是用户已登录我们才需要判断。
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
                 has_fav = True
 
@@ -177,7 +177,7 @@ class AddFavView(View):
 
         # 收藏与已收藏取消收藏
         # 判断用户是否登录:即使没登录会有一个匿名的user
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             # 未登录时返回json提示未登录，跳转到登录页面是在ajax中做的
             return HttpResponse('{"status":"fail", "msg":"用户未登录"}', content_type='application/json')
         exist_records = UserFavorite.objects.filter(user=request.user, fav_id=int(fav_id), fav_type=int(fav_type))
